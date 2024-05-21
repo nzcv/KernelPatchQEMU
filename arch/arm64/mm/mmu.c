@@ -762,16 +762,16 @@ void __init early_fixmap_init(void)
 	BUILD_BUG_ON((__fix_to_virt(FIX_BTMAP_BEGIN) >> PMD_SHIFT)
 		     != (__fix_to_virt(FIX_BTMAP_END) >> PMD_SHIFT));
 
-	if ((pmd != fixmap_pmd(fix_to_virt(FIX_BTMAP_BEGIN)))
-	     || pmd != fixmap_pmd(fix_to_virt(FIX_BTMAP_END))) {
+	if ((pmd != fixmap_pmd(__fix_to_virt(FIX_BTMAP_BEGIN)))
+	     || pmd != fixmap_pmd(__fix_to_virt(FIX_BTMAP_END))) {
 		WARN_ON(1);
 		pr_warn("pmd %p != %p, %p\n",
-			pmd, fixmap_pmd(fix_to_virt(FIX_BTMAP_BEGIN)),
-			fixmap_pmd(fix_to_virt(FIX_BTMAP_END)));
+			pmd, fixmap_pmd(__fix_to_virt(FIX_BTMAP_BEGIN)),
+			fixmap_pmd(__fix_to_virt(FIX_BTMAP_END)));
 		pr_warn("fix_to_virt(FIX_BTMAP_BEGIN): %08lx\n",
-			fix_to_virt(FIX_BTMAP_BEGIN));
+			__fix_to_virt(FIX_BTMAP_BEGIN));
 		pr_warn("fix_to_virt(FIX_BTMAP_END):   %08lx\n",
-			fix_to_virt(FIX_BTMAP_END));
+			__fix_to_virt(FIX_BTMAP_END));
 
 		pr_warn("FIX_BTMAP_END:       %d\n", FIX_BTMAP_END);
 		pr_warn("FIX_BTMAP_BEGIN:     %d\n", FIX_BTMAP_BEGIN);

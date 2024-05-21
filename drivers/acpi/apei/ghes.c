@@ -138,7 +138,7 @@ static void __iomem *ghes_ioremap_pfn_nmi(u64 pfn)
 	prot = arch_apei_get_mem_attribute(paddr);
 	__set_fixmap(FIX_APEI_GHES_NMI, paddr, prot);
 
-	return (void __iomem *) fix_to_virt(FIX_APEI_GHES_NMI);
+	return (void __iomem *) __fix_to_virt(FIX_APEI_GHES_NMI);
 }
 
 static void __iomem *ghes_ioremap_pfn_irq(u64 pfn)
@@ -150,7 +150,7 @@ static void __iomem *ghes_ioremap_pfn_irq(u64 pfn)
 	prot = arch_apei_get_mem_attribute(paddr);
 	__set_fixmap(FIX_APEI_GHES_IRQ, paddr, prot);
 
-	return (void __iomem *) fix_to_virt(FIX_APEI_GHES_IRQ);
+	return (void __iomem *) __fix_to_virt(FIX_APEI_GHES_IRQ);
 }
 
 static void ghes_iounmap_nmi(void)

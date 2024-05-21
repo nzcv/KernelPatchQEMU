@@ -81,6 +81,16 @@ static inline unsigned long virt_to_fix(const unsigned long vaddr)
 #define set_fixmap_offset(idx, phys) \
 	__set_fixmap_offset(idx, phys, FIXMAP_PAGE_NORMAL)
 
+#define __set_fixmap_offset2(idx, phys, flags)				\
+({									\
+	unsigned long ________addr;					\
+	__set_fixmap(idx, phys, flags);					\
+	________addr = __fix_to_virt(idx) + ((phys) & (PAGE_SIZE - 1));	\
+	________addr;							\
+})
+
+#define set_fixmap_offset2(idx, phys) \
+	__set_fixmap_offset2(idx, phys, FIXMAP_PAGE_NORMAL)
 /*
  * Some hardware wants to get fixmapped without caching.
  */

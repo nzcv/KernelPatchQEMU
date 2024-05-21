@@ -29,7 +29,7 @@
 
 #include <asm/cacheflush.h>
 #include <asm/debug-monitors.h>
-#include <asm/fixmap.h>
+// #include <asm/fixmap.h>
 #include <asm/insn.h>
 #include <asm/kprobes.h>
 
@@ -102,7 +102,7 @@ static void __kprobes *patch_map(void *addr, int fixmap)
 		return addr;
 
 	BUG_ON(!page);
-	return (void *)set_fixmap_offset(fixmap, page_to_phys(page) +
+	return (void *)set_fixmap_offset2(fixmap, page_to_phys(page) +
 			(uintaddr & ~PAGE_MASK));
 }
 

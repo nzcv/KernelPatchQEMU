@@ -194,7 +194,7 @@ void __init early_iounmap(void __iomem *addr, unsigned long size)
 	     addr, size, slot);
 
 	virt_addr = (unsigned long)addr;
-	if (WARN_ON(virt_addr < fix_to_virt(FIX_BTMAP_BEGIN)))
+	if (WARN_ON(virt_addr < __fix_to_virt(FIX_BTMAP_BEGIN)))
 		return;
 
 	offset = offset_in_page(virt_addr);
