@@ -34,7 +34,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install gcc-12-aarch64-linux-gnu
-          mv  /usr/bin/aarch64-linux-gnu-gcc-12  /usr/bin/aarch64-linux-gnu-gcc
+          sudo mv  /usr/bin/aarch64-linux-gnu-gcc-12  /usr/bin/aarch64-linux-gnu-gcc
       - name: Kernel Build
         run: |
           make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- defconfig
