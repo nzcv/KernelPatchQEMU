@@ -45,5 +45,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: |
-            $GITHUB_WORKSPACE/linux-4.15.2/arch/arm64/boot/Image
+            $GITHUB_WORKSPACE/arch/arm64/boot/Image
           prerelease: ${{ contains(github.ref, '-') }}
