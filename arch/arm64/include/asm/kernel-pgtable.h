@@ -53,6 +53,7 @@
 #endif
 
 #define SWAPPER_DIR_SIZE	(SWAPPER_PGTABLE_LEVELS * PAGE_SIZE)
+/*  定义了连续的几个页，分别存放PGD，PMD，PTE等，连续在一起，这个也是head.S中填充的 */
 #define IDMAP_DIR_SIZE		(IDMAP_PGTABLE_LEVELS * PAGE_SIZE)
 
 #ifdef CONFIG_ARM64_SW_TTBR0_PAN

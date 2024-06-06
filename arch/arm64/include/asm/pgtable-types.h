@@ -30,8 +30,11 @@ typedef u64 pgdval_t;
 /*
  * These are used to make use of C type-checking..
  */
+/* 描述各级页表中的页表项 */
 typedef struct { pteval_t pte; } pte_t;
+/* 将页表项类型转换成无符号类型 */
 #define pte_val(x)	((x).pte)
+/* 将无符号类型转换成页表项类型 */
 #define __pte(x)	((pte_t) { (x) } )
 
 #if CONFIG_PGTABLE_LEVELS > 2

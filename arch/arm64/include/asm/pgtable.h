@@ -682,6 +682,12 @@ static inline void pmdp_set_wrprotect(struct mm_struct *mm,
 #endif
 
 extern pgd_t swapper_pg_dir[PTRS_PER_PGD];
+// PTRS_PER_PGD：页全局目录中条目的数量。
+/*
+内核启动阶段：在内核启动的早期阶段，分页机制还没有完全建立，内核需要使用身份映射来访问物理内存。
+  引导加载器: 引导加载器会设置一些临时的页表，用于在内核初始化期间进行基本的内存访问。
+内核映射内存: 在进行某些特殊操作时，例如访问设备内存或者进行物理内存的低级管理时，身份映射页表会被临时使用。
+*/
 extern pgd_t idmap_pg_dir[PTRS_PER_PGD];
 
 /*
