@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "vm",
+        "type": "shell",
+        "command": "qemu-system-aarch64  -M virt -cpu cortex-a57 -smp 1 -m 1G  -kernel Image2  -nographic  -append 'console=ttyAMA0 oops=panic panic_on_warn=1 panic=-1 ftrace_dump_on_oops=orig_cpu debug earlyprintk=serial slub_debug=UZ root=/dev/ram rdinit=/bin/sh' -initrd rootfs.img.gz -S -gdb tcp::1234",
+        "presentation": {
+          "echo": true,
+          "clear": true,
+          "group": "vm"
+        },
+        "isBackground": true,
+        "problemMatcher": [
+          {
+            "pattern": [
+              {
+                "regexp": ".",
+                "file": 1,
+                "location": 2,
+                "message": 3
+              }
+            ],
+            "background": {
+              "activeOnStart": true,
+              "beginsPattern": ".",
+              "endsPattern": "."
+            }
+          }
+        ]
+      }
+    ]
+  }

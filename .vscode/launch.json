@@ -1,0 +1,34 @@
+{    
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "kernel-debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/vmlinux",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [], 
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath":"/usr/bin/gdb-multiarch",
+            "miDebuggerServerAddress": "localhost:9000",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "text": "set disassemble-next-line on"
+                },
+                {
+                    "text": "show disassemble-next-line"
+                },
+                {
+                    "text": "b *0xffffff8008952090"
+                }
+            ]
+        }
+    ]
+}
