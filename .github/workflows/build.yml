@@ -34,11 +34,22 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install gcc-10-aarch64-linux-gnu
+          sudo apt-get install cpio
           sudo mv  /usr/bin/aarch64-linux-gnu-gcc-10  /usr/bin/aarch64-linux-gnu-gcc
       - name: Kernel Build
         run: |
           make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- defconfig
           make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
+      - name: rootfs
+        run: |
+          curl -LO https://busybox.net/downloads/busybox-1.36.1.tar.bz2
+          tar xf busybox-1.36.1.tar.bz2
+          cd busybox-1.36.1/
+          cp $GITHUB_WORKSPACE/busybox.config.bk .config
+          make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- install
+          cd _install/
+          find . | cpio -o --format=newc > ../rootfs.img
+          cd $GITHUB_WORKSPACE
       - name: Upload Github Assets
         uses: softprops/action-gh-release@v1
         env:
@@ -46,4 +57,5 @@ jobs:
         with:
           files: |
             arch/arm64/boot/Image
+            busybox-1.36.1/rootfs.img
           prerelease: ${{ contains(github.ref, '-') }}
